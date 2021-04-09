@@ -1,0 +1,48 @@
+# spring
+spring:
+
+
+  # Be sure to also change "mybatis.mapper-locations" when switching between Oracle and Postgresql datasources
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: example
+#    auto-commit: false
+#    maximum-pool-size: ${DB_MAX_ACTIVE_CONN:4}
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:mybatis
+    schema: classpath:init.sql
+    data: classpath:data.sql
+h2:
+  console:
+    enabled: true
+  settings:
+    trace: true
+    web-allow-others: true
+    path: /h2-console
+
+# server
+server:
+  port: ${SPRING_SERVER_PORT:10001}
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json,application/xml
+    min-response-size: 2048
+
+# project
+project:
+  package: com.example.demo
+
+# mybatis
+mybatis:
+  config-location: classpath:mapper/mybatis-config.xml
+#  mapper-locations: classpath*:mapper/*.xml
+  mapper-locations: classpath:mapper/UserMapper.xml
+#  type-handlers-package: com.css.cloud.util.typehandlers
+
+
+
+

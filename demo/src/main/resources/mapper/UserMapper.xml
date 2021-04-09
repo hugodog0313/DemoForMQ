@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.UserDAO">
+    <select id="findByUserId"
+            resultType="com.example.demo.vo.UserVO" parameterType="java.lang.String">
+        SELECT *
+        FROM USERS
+        WHERE id = #{id}
+    </select>
+
+    <insert id="add" parameterType="com.example.demo.vo.UserVO">
+        INSERT INTO USERS
+        (id, name, tel, age)<!-- column name -->
+        VALUES (#{id}, #{name}, #{tel}, #{age})<!-- property name -->
+    </insert>
+
+    <update id="updateByUserId" parameterType="com.example.demo.vo.UserVO"  keyProperty="id">
+        UPDATE USERS
+        SET name=#{name},
+        tel=#{tel},
+        age=#{age}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteByUserId" parameterType="java.lang.String">
+        DELETE
+        FROM USERS
+        WHERE id = #{id}
+    </delete>
+
+<!--    <select id="findByDelivPackIdAndLastIdempotentId"-->
+<!--            resultType="com.css.cloud.vo.inventory.DelivPackVO">-->
+<!--        SELECT *-->
+<!--        FROM sys_iv.deliv_pack-->
+<!--        WHERE deliv_pack_id = #{delivPackId}-->
+<!--        AND last_idempotent_id = #{lastIdempotentId}-->
+<!--    </select>-->
+
+</mapper>

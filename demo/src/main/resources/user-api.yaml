@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  version: '0.0.1'
+  title: 'User API'
+servers:
+  - url: 'http://localhost:10001?filename=D:/demo/demo/src/main/resources/user-api.yaml&renderer=0'
+tags:
+  - name: 'Users'
+    description: 'users'
+paths:
+  /user:
+    post:
+      tags:
+        - 'Users'
+      summary: 'Create User'
+      description: 'Create User'
+      operationId: 'postUser'
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+            description: user id
+          required: true
+        - in: query
+          name: name
+          schema:
+            type: string
+            description: user name
+          required: true
+        - in: query
+          name: tel
+          schema:
+            type: string
+            description: user tel
+          required: true
+        - in: query
+          name: age
+          schema:
+            type: integer
+            description: user age
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                type: string
+                properties:
+                  id:
+                    type: string
+        400:
+          description: Check Failed.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/CheckFailedException'
+        404:
+          description: Check Failed.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/EntityNotFoundException'
+        500:
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ApiException'
+                  - $ref: '#/components/schemas/Exception'
+
+  /user/{id}:
+    get:
+      tags:
+        - 'Users'
+      description: 'get user by id'
+      operationId: 'getUserById'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            description: user id
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+        400:
+          description: Check Failed.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/CheckFailedException'
+        404:
+          description: Check Failed.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/EntityNotFoundException'
+        500:
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/ApiException'
+                  - $ref: '#/components/schemas/Exception'
+    put:
+      tags:
+        - 'Users'
+      summary: update User
+      operationId: updateUser
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            description: user id
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      tags:
+        - 'Users'
+      summary: delete user
+      operationId: deleteUser
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            description: user id
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+
+        name:
+          type: string
+
+        tel:
+          type: string
+
+        age:
+          type: integer
+
+
+
+
+    ApiException:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: '2021-01-20T13:15:03.817'
+        status:
+          type: string
+          example: '500'
+        error:
+          type: string
+          example: 'Internal Server Error'
+        exception:
+          type: string
+          example: 'com.css.cloud.exception.ApiException'
+        message:
+          type: string
+          example: 'Add Delivery Pack Error'
+        originalMessage:
+          type: string
+          example: '{\"code\":\"E11001\"}'
+        code:
+          type: string
+          example: 'E11001'
+    CheckFailedException:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: '2021-01-26T16:37:46.606'
+        status:
+          type: string
+          example: '400'
+        error:
+          type: string
+          example: 'Bad Request'
+        exception:
+          type: string
+          example: 'com.css.cloud.exception.CheckFailedException'
+        message:
+          type: string
+          example: 'Check DelivPack Field Failed.'
+        originalMessage:
+          type: string
+          example: '{\"code\":\"E12000\"}'
+        code:
+          type: string
+          example: 'E12000'
+    EntityNotFoundException:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: '2021-01-25T13:15:03.817'
+        status:
+          type: string
+          example: '404'
+        error:
+          type: string
+          example: 'Not Found'
+        exception:
+          type: string
+          example: 'com.css.cloud.exception.EntityNotFoundException'
+        message:
+          type: string
+          example: 'Entity DelivPack Not Found'
+        originalMessage:
+          type: string
+          example: '{\"code\":\"E14000\"}'
+        code:
+          type: string
+          example: 'E14001'
+    Exception:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: '2021-01-20T13:15:03.817'
+        status:
+          type: string
+          description: ''
+          example: '500'
+        error:
+          type: string
+          example: 'Internal Server Error'
+        exception:
+          type: string
+          example: 'java.lang.Exception'
+        message:
+          type: string
+          example: '系統發生錯誤java.lang.Exception'
+        originalMessage:
+          type: string
+          example: ''
+        code:
+          type: string
+          example: 'CHECKED_ERROR'

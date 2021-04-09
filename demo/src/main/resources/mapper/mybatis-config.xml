@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="aggressiveLazyLoading" value="false" />
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <setting name="useColumnLabel" value="true" />
+        <setting name="useGeneratedKeys" value="false" />
+        <setting name="autoMappingBehavior" value="PARTIAL" />
+        <setting name="autoMappingUnknownColumnBehavior" value="NONE" />
+        <setting name="defaultExecutorType" value="REUSE" />
+        <!-- <setting name="defaultStatementTimeout" value="" /> -->
+        <setting name="defaultFetchSize" value="1000" />
+        <!-- <setting name="defaultResultSetType" value="" /> -->
+        <setting name="safeRowBoundsEnabled" value="false" />
+        <setting name="safeResultHandlerEnabled" value="true" />
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="localCacheScope" value="STATEMENT" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+        <!-- <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"
+            /> -->
+        <!-- <setting name="defaultScriptingLanguage" value="org.apache.ibatis.scripting.xmltags.XMLDynamicLanguageDriver"
+            /> -->
+<!--        <setting name="defaultEnumTypeHandler"
+                 value="com.css.commons.util.mybatis.EnumTypeHandler" />-->
+        <setting name="callSettersOnNulls" value="false" />
+        <setting name="returnInstanceForEmptyRow" value="false" />
+        <!-- <setting name="logPrefix" value="MyBatis[${environment}]:" /> -->
+        <!-- <setting name="logImpl" value="SLF4J" /> -->
+        <!-- <setting name="proxyFactory" value="JAVASSIST" /> -->
+        <!-- <setting name="vfsImpl" value="" /> -->
+        <setting name="useActualParamName" value="true" />
+        <!-- <setting name="configurationFactory" value=""/> -->
+<!--        <setting name="shrinkWhitespacesInSql" value="false" />-->
+    </settings>
+    <typeAliases>
+<!--        <typeAlias alias="JsonTypeHandler" type="com.css.commons.util.mybatis.JsonTypeHandler"/>-->
+    </typeAliases>
+</configuration>
